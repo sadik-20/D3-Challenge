@@ -28,4 +28,15 @@ stateData.forEach(function(data){
     data.healthcare = +data.healthcare;
  });
  console.log(stateData)
+//create a scale functions
+var xLinearScale = d3.scaleLinear()
+.domain([0,d3.max(staeData, d => d.poverty)])
+.range([0, width]);
+
+var YLinearScale = d3.scaleLinear()
+.domain([0, d3.max(stateData,d => d.healthcare)])
+.range([height, 0]);
+
+
+
 })
