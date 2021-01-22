@@ -70,4 +70,12 @@ var toolTip = d3.tip()
 //creating tooltip in the chart by calling tooltip on chartGroup
 chartGroup.call(toolTip);
 
+//creating event listeners to display and hide the tooltip by on/out mouse click
+
+circlesGroup.on("click",function(data){
+    toolTip.show(data, this);
+})
+
+
+
 })
