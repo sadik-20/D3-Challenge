@@ -59,5 +59,15 @@ var circlesGroup = chartGroup.selectAll("cricle")
 .attr("fill", "blue")
 .attr("opacity", ".5");
 
+// intializing tool tip
+
+var toolTip = d3.tip()
+.attr("class", "tooltip")
+.offset([80, -60])
+.html(function (d){
+    return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcaare}`);
+});
+//creating tooltip in the chart by calling tooltip on chartGroup
+chartGroup.call(toolTip);
 
 })
