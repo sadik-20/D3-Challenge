@@ -48,4 +48,16 @@ chartGroup.append("g")
 chartGroup.append("g")
 .call(leftAxis);
 
+// creating circle on the chart
+var circlesGroup = chartGroup.selectAll("cricle")
+.data(stateData)
+.enter()
+.append("circle")
+.attr("cx", d => xLinearScale(d.poverty))
+.attr("cy", d => yLinearScale(d.healthcare))
+.attr("r", "28")
+.attr("fill", "blue")
+.attr("opacity", ".5");
+
+
 })
