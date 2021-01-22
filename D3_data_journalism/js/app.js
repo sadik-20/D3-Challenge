@@ -37,6 +37,11 @@ var YLinearScale = d3.scaleLinear()
 .domain([0, d3.max(stateData,d => d.healthcare)])
 .range([height, 0]);
 
+//axis funtions
+var bottomAxis = d3.axisBottom(xLinearScale);
+var leftAxis = d3.axisLeft(yLinearScale);
+
+
 
 
 })
