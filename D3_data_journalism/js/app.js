@@ -75,6 +75,10 @@ chartGroup.call(toolTip);
 circlesGroup.on("click",function(data){
     toolTip.show(data, this);
 })
+// clicking on_mouse and out events
+.on("mouseout", function (data, index) {
+    toolTip.hide(data);
+  });
 
 
 
