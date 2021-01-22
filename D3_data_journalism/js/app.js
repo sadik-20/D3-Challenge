@@ -20,7 +20,7 @@ var svg = d3.select("#scatter")
 var chartGroup =svg.append("g")
 .attr("transform", `translate(${margin.left},${margin.top})`);
 
-d3.csv("assets/data/data.csv").then(function (stateData){
+d3.csv("D3_data_journalism/data/data.csv").then(function (stateData){
     //console.log(stateData);
 //Parse data and cast as numbers
 stateData.forEach(function(data){
@@ -30,18 +30,22 @@ stateData.forEach(function(data){
  console.log(stateData)
 //create a scale functions
 var xLinearScale = d3.scaleLinear()
-.domain([0,d3.max(staeData, d => d.poverty)])
+.domain([0,d3.max(stateData, d => d.poverty)])
 .range([0, width]);
 
-var YLinearScale = d3.scaleLinear()
-.domain([0, d3.max(stateData,d => d.healthcare)])
+var yLinearScale = d3.scaleLinear()
+.domain([0, d3.max(stateData, d => d.healthcare)])
 .range([height, 0]);
 
 //axis funtions
 var bottomAxis = d3.axisBottom(xLinearScale);
 var leftAxis = d3.axisLeft(yLinearScale);
+//Append axis to the chart
+chartGroup.append("g")
+.attr("transform",`translate(0,${height})`)
+.call(bottomAxis);
 
-
-
+chartGroup.append("g")
+.call(leftAxis);
 
 })
