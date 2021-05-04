@@ -31,12 +31,14 @@ stateData.forEach(function(data){
 
  //create a scale functions
 const xScale = d3.scaleLinear()
-.domain([0,d3.max(stateData, d => d.poverty)])
-.range([0, width]);
+.domain([0, d3.max(stateData, d => d.poverty)])
+.range([0, width])
+.nice();
 
 const yScale = d3.scaleLinear()
 .domain([0, d3.max(stateData, d => d.healthcare)])
-.range([height, 0]);
+.range([height, 0])
+.nice();
 
 //axis funtions
 var xAxis = d3.axisBottom(xScale);
@@ -56,7 +58,7 @@ var circlesGroup = chartGroup.selectAll("cricle")
 .append("circle")
 .attr("cx", d => xScale(d.poverty))
 .attr("cy", d => yScale(d.healthcare))
-.attr("r", "28")
+.attr("r", "20")
 .attr("fill", "blue")
 .attr("opacity", ".5");
 
@@ -80,7 +82,7 @@ circlesGroup.on("click",function(data){
 .on("mouseout", function (data, index) {
     toolTip.hide(data);
   });
-
+//adding text to each datapoint
   chartGroup.append("g")
   .selectAll('text')
   .data(stateData)
@@ -97,9 +99,7 @@ circlesGroup.on("click",function(data){
   .style("font-weight", "bold")
   .attr("alignment-baseline", "central");
 
-
 // creating a label for the axis
-
 chartGroup.append("text")
 .attr("transform","rotate(-90)")
 .attr("y",0 - margin.left + 40)
@@ -116,10 +116,8 @@ chartGroup.append("text")
   .style("font", "20px sans-serif")
   .style("font-weight", "bold")
   .text("Poverty (%)");
-
-
-
 })
+//function that display an error when there is one
 .catch(function (error) {
     console.log(error);
 });
